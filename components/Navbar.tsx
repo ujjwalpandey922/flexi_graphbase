@@ -3,8 +3,13 @@ import Link from "next/link";
 import logo from "@/public/logo.svg";
 import { NavLinks } from "@/constants";
 import AuthProviders from "./AuthProviders";
-const Navbar = () => {
-  const system = {};
+import { getCurrentUser } from "@/lib/session";
+import ProfileMenu from "./ProfileMenu";
+//top level await in next js as it is server side rendering
+const Navbar = async () => {
+  const session = await getCurrentUser();
+  // console.log("=========SYSTEM================");
+  // console.log(session);
   return (
     <nav className="flexBetween navbar">
       <div className="flex-1 flexStart gap-12">
@@ -20,10 +25,10 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="flexCenter gap-4">
-        {system ? (
+        {session?.user ? (
           <>
-            User Photo
-            <Link href={"/createPage"}>BUTTON</Link>
+            <ProfileMenu session={session} />
+            <Link href={"/createProject"}>Create Project</Link>
           </>
         ) : (
           <AuthProviders />

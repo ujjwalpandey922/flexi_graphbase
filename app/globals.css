@@ -61,7 +61,7 @@ body {
   @apply flex flex-wrap whitespace-nowrap text-sm font-normal gap-2 w-full;
 }
 
-/* Home */
+/* Home USE FULL ALOT OF PLACES */
 .projects-grid {
   @apply grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 mt-10 w-full;
 }
@@ -125,7 +125,7 @@ body {
 }
 
 .modal_wrapper {
-  @apply flex justify-start items-center flex-col absolute h-[95%] w-full bottom-0 bg-white rounded-t-3xl lg:px-40 px-8 pt-14 pb-72 overflow-auto;
+  @apply flex justify-start items-center flex-col absolute h-[90%] w-full bottom-0 bg-white rounded-t-3xl lg:px-40 px-8 pt-14 pb-72 overflow-auto;
 }
 
 /* Navbar */
