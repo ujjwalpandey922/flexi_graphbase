@@ -1,36 +1,58 @@
 import { ProjectInterface } from "@/common.types";
+import Category from "@/components/Category";
+import More from "@/components/More";
 import ProjectCard from "@/components/ProjectCard";
-import { fetchAllProjects } from "@/lib/action";
+import { fetchAllProjects, fetchAllProjectsCategory } from "@/lib/action";
 type ProjectSearch = {
   projectSearch: {
     edges: { node: ProjectInterface }[];
     pageInfo: {
       hasPreviousPage: boolean;
       hasNextPage: boolean;
-      startCursor: boolean;
-      endCursor: boolean;
+      startCursor: string ;
+      endCursor: string ;
     };
   };
 };
-const Home = async () => {
-  const data = (await fetchAllProjects()) as ProjectSearch;
-  console.log("PROJEtCS", data);
+type SearchParams = {
+  category?: string | null;
+  endcursor?: string | null;
+};
 
-  const actualData = data?.projectSearch.edges || [];
+type Props = {
+  searchParams: SearchParams;
+};
+//Force Dynamic Reload
+export const dynamic = "force-dynamic";
+export const dynamicParams = true;
+export const revalidate = 0;
+const Home = async ({ searchParams: { category, endcursor } }: Props) => {
+  let data;
+  if (!category && !endcursor) {
+    data = (await fetchAllProjects()) as ProjectSearch;
+  } else if (endcursor || category) {
+    data = (await fetchAllProjectsCategory(
+      category,
+      endcursor
+    )) as ProjectSearch;
+  }
+
+  const actualData = data?.projectSearch?.edges || [];
+  console.log(data, actualData);
   if (actualData.length === 0) {
     return (
       <section className="flexStart flex-col paddings">
-        Categories
+        <Category />
         <p className=" no-result-text">
           No Projects Found Go MAKE SOME FIRST.....!!!!!!!
         </p>
       </section>
     );
   }
-
+  const pagination = data?.projectSearch?.pageInfo ;
   return (
     <section className="flexStart flex-col mb-16 paddings">
-      <h1>Cat</h1>
+      <Category />
       <section className="projects-grid">
         {actualData.map(({ node }: { node: ProjectInterface }) => (
           <ProjectCard
@@ -44,7 +66,12 @@ const Home = async () => {
           />
         ))}
       </section>
-      <h1>MORe</h1>
+      <More
+        startCursor={pagination?.startCursor}
+        endCursor={pagination?.endCursor}
+        hasNextPage={pagination?.hasNextPage}
+        hasPreviousPage={pagination?.hasPreviousPage}
+      />
     </section>
   );
 };

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -27,8 +27,8 @@ const ProjectCard = ({ id, image, title, name, avatarUrl, userId }: Props) => {
       >
         <Image
           src={image}
-          width={414}
-          height={314}
+          width={400}
+          height={300}
           alt="thumbnail"
           className="w-full h-full object-cover rounded-2xl"
         />
@@ -36,10 +36,17 @@ const ProjectCard = ({ id, image, title, name, avatarUrl, userId }: Props) => {
           <p className="w-full">{title}</p>
         </div>
       </Link>
-      <div className="flexBetween w-full px-2 mt-3 font-semibold text-sm">
+      <div className="flexBetween w-full px-2 mt-3 font-semibold text-sm  ">
         <Link href={`/profile/${userId}`}>
           <div className="flexCenter gap-2">
-            <Image src={avatarUrl} width={24} height={24} alt="Profile Image" />
+            <Image
+              src={avatarUrl}
+              width={24}
+              height={24}
+              alt="Profile Image"
+              className="rounded-full"
+            />
+            <p>{name}</p>
           </div>
         </Link>
         <div className="flexCenter gap-3">
@@ -48,7 +55,7 @@ const ProjectCard = ({ id, image, title, name, avatarUrl, userId }: Props) => {
             <p className="text-sm">{randomLikes}</p>
           </div>
           <div className="flexCenter gap-2">
-            <Image src="/eye.svg" width={12} height={9} alt="eye" />
+            <Image src="/eye.svg" width={12} height={10} alt="eye" />
             <p className="text-sm">{randomViews}</p>
           </div>
         </div>

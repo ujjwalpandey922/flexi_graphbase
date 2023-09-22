@@ -22,7 +22,7 @@ const Button = ({
 }: Props) => {
   return (
     <button
-      className={`flexCenter gap-3 px-4 py-3 rounded-lg bg-slate-600   
+      className={`flexCenter gap-3 px-4 py-3 rounded-lg   
        ${textColor || "text-white"} 
         ${isSubmitting ? "bg-black/50" : bgColor || "bg-primary-purple"}`}
       type={type || "button"}

@@ -1,26 +1,27 @@
 "use client";
-import { SessionInterface } from "@/common.types";
+import { ProjectInterface, SessionInterface } from "@/common.types";
 import React, { ChangeEvent, useState } from "react";
 import Image from "next/image";
 import FormField from "./FormField";
 import CustomInput from "./CustomInput";
 import { categoryFilters } from "@/constants";
 import Button from "./Button";
-import { createProject, fetchToken } from "@/lib/action";
+import { createProject, editProject, fetchToken } from "@/lib/action";
 import { useRouter } from "next/navigation";
 type props = {
   type: string;
   session: SessionInterface;
+  details?: ProjectInterface;
 };
-const ProjectForm = ({ type, session }: props) => {
+const ProjectForm = ({ type, session, details }: props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({
-    image: "",
-    title: "",
-    description: "",
-    liveSiteUrl: "",
-    githubUrl: "",
-    category: "",
+    image: details?.image || "",
+    title: details?.title || "",
+    description: details?.description || "",
+    liveSiteUrl: details?.liveSiteUrl || "",
+    githubUrl: details?.githubUrl || "",
+    category: details?.category || "",
   });
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,9 +31,19 @@ const ProjectForm = ({ type, session }: props) => {
     const { token } = await fetchToken();
 
     try {
-      if (type === "create") {        
-        await createProject(form, session?.user?.id, token);
-        router.push("/");
+      if (type === "create") {
+        const res = await createProject(form, session?.user?.id, token);
+        console.log(res);
+        if (res) {
+          router.push("/");
+        }
+      }
+      if (type === "edit") {
+        const res = await editProject(form, details?.id as string, token);
+        console.log(res);
+        if (res) {
+          router.push("/");
+        }
       }
     } catch (error) {
       console.log("==============PROJEC FORM ERROR==========");
@@ -67,24 +78,23 @@ const ProjectForm = ({ type, session }: props) => {
   return (
     <form onSubmit={handleSubmit} className=" form flex flex-col gap-4 my-8">
       <div className="flexStart form_image-container">
-        {!form.image ? (
-          <label className="flexCenter form_image-label">
-            UPLOAD Image for project
-            <input
-              type="file"
-              id="image"
-              accept="image/*"
-              required={type === "create"}
-              className="form_image-input"
-              onChange={handleImageUpload}
-            />
-          </label>
-        ) : (
+        <label htmlFor="poster" className="flexCenter form_image-label">
+          {!form.image && "Choose a poster for your project"}
+        </label>
+        <input
+          id="image"
+          type="file"
+          accept="image/*"
+          required={type === "create" ? true : false}
+          className="form_image-input"
+          onChange={(e) => handleImageUpload(e)}
+        />
+        {form.image && (
           <Image
-            src={form.image}
-            className="object-contain z-20 sm:p-10"
+            src={form?.image}
+            className="sm:p-10 object-contain z-20"
+            alt="image"
             fill
-            alt="Project Thumbnail"
           />
         )}
       </div>
