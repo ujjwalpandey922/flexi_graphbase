@@ -18,7 +18,7 @@ const RelatedProjects = async ({ userId, projectId }: props) => {
       <div className="flex justify-between items-center">
         <p className="text-base font-bold">More By... {result?.user?.name}</p>
         <Link
-          href={`profile/${result?.user?.id}`}
+          href={`/profile/${result?.user?.id}`}
           className="text-base text-primary-purple"
         >
           View All
