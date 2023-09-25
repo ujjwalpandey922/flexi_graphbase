@@ -28,7 +28,8 @@ const client = new GraphQLClient(apiUrl);
 export const fetchToken = async () => {
   try {
     // default way to get a token in next
-    const res = await fetch(`/api/auth/token`);
+    const res = await fetch(`${serverUrl}/api/auth/token`);
+    console.log(res, `${serverUrl}/api/auth/token`);
     return res.json();
   } catch (error) {
     throw error;
@@ -64,7 +65,7 @@ const uploadImg = async (imagePath: string) => {
   try {
     // call backend point like we gen do no change from react
     // to make this url in the folder structure make folder under app/api/upload
-    const res = await fetch(`/api/upload`, {
+    const res = await fetch(`${serverUrl}/api/upload`, {
       method: "POST",
       body: JSON.stringify({ path: imagePath }),
     });
