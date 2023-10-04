@@ -19,7 +19,7 @@ const Category = () => {
             key={category}
             className={`px-3 py-4  rounded-lg capitalize whitespace-nowrap font-semibold hover:bg-[#00000065]  ${
               category === selectedCategory
-                ? "font-medium bg-light-white-300 text-black "
+                ? "font-medium bg-light-white-300 text-black  hover:text-light-white-500"
                 : "text-light-white-500"
             }`}
             type="button"
