@@ -20,9 +20,11 @@ const ProfilePage = ({ user }: Props) => (
           className="rounded-full"
           alt="user image"
         />
-        <p className="text-4xl font-bold mt-10">{user?.name}</p>
-        <p className="md:text-5xl text-3xl font-extrabold md:mt-10 mt-5 max-w-lg">
-          I’m Software Engineer  👋
+        <p className="text-4xl font-bold mt-10 text-light-white-500">
+          {user?.name}
+        </p>
+        <p className="md:text-5xl text-3xl font-extrabold md:mt-10 mt-5 max-w-lg text-light-white-500">
+          I’m Software Engineer 👋
         </p>
 
         <div className="flex mt-8 gap-5 w-full flex-wrap">
@@ -59,7 +61,9 @@ const ProfilePage = ({ user }: Props) => (
     </section>
 
     <section className="flexStart flex-col lg:mt-28 mt-16 w-full">
-      <p className="w-full text-left text-lg font-semibold">Recent Work</p>
+      <p className="w-full text-left text-lg font-semibold text-light-white-500">
+        Recent Work
+      </p>
 
       <div className="profile_projects">
         {user?.projects?.edges?.map(({ node }: { node: ProjectInterface }) => (

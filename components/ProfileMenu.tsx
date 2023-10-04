@@ -12,21 +12,21 @@ const ProfileMenu = ({ session }: { session: SessionInterface }) => {
   const [openModal, setOpenModal] = useState(false);
 
   return (
-    <div className="flexCenter z-10 flex-col relative">
+    <div className="flexCenter z-10 flex-col relative ">
       <Menu as="div">
         <Menu.Button
           className="flexCenter"
           onMouseEnter={() => setOpenModal(true)}
         >
-          {session?.user?.avatarUrl  && (
-              <Image
-                src={session?.user?.avatarUrl }
-                width={40}
-                height={40}
-                className="rounded-full"
-                alt="user profile image"
-              />
-            )}
+          {session?.user?.avatarUrl && (
+            <Image
+              src={session?.user?.avatarUrl}
+              width={40}
+              height={40}
+              className="rounded-full"
+              alt="user profile image"
+            />
+          )}
         </Menu.Button>
 
         <Transition
@@ -41,20 +41,19 @@ const ProfileMenu = ({ session }: { session: SessionInterface }) => {
         >
           <Menu.Items
             static
-            className="flexStart profile_menu-items"
+            className="flexStart profile_menu-items "
             onMouseLeave={() => setOpenModal(false)}
           >
             <div className="flex flex-col items-center gap-y-4">
-              {
-                (session?.user?.avatarUrl && (
-                  <Image
-                    src={ session?.user?.avatarUrl}
-                    className="rounded-full"
-                    width={80}
-                    height={80}
-                    alt="profile Image"
-                  />
-                ))}
+              {session?.user?.avatarUrl && (
+                <Image
+                  src={session?.user?.avatarUrl}
+                  className="rounded-full"
+                  width={80}
+                  height={80}
+                  alt="profile Image"
+                />
+              )}
               <p className="font-semibold">{session?.user?.name}</p>
             </div>
 
@@ -84,7 +83,7 @@ const ProfileMenu = ({ session }: { session: SessionInterface }) => {
                 </Link>
               </Menu.Item>
             </div>
-            <div className="w-full flexStart border-t border-nav-border mt-5 pt-5">
+            <div className="w-full flexStart border-t border-primary-purple mt-5 pt-5">
               <Menu.Item>
                 <button
                   type="button"

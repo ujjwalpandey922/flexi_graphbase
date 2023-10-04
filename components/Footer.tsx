@@ -11,7 +11,7 @@ type footerTypes = {
 const FooterCol = ({ title, links }: footerTypes) => {
   return (
     <div className="footer_column">
-      <h4 className="font-semibold">{title}</h4>
+      <h4 className="font-bold text-xl">{title}</h4>
       <ul className="flex flex-col gap-2 font-normal">
         {links.map((link) => (
           <Link href="/" key={link}>
@@ -25,7 +25,7 @@ const FooterCol = ({ title, links }: footerTypes) => {
 
 const Footer = () => {
   return (
-    <footer className="flexStart footer ">
+    <footer className="flexStart footer text-light-white-100">
       <div className="flex flex-col gap-16 w-full">
         <div className="flex items-start flex-col ">
           <Image
@@ -80,8 +80,8 @@ const Footer = () => {
       <div className="flexBetween footer_copyright">
         {" "}
         <p>@ 2023 Flexibble. All rights reserved</p>{" "}
-        <p className="text-gray">
-          <span className="text-black font-semibold">10,214</span> projects
+        <p className="text-light-white-500 flex gap-2 items-center">
+          <span className="text-white font-semibold">10,214</span> projects
           submitted
         </p>
       </div>

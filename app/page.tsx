@@ -41,9 +41,9 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
   console.log(data, actualData);
   if (actualData.length === 0) {
     return (
-      <section className="flexStart flex-col paddings">
+      <section className="flexStart flex-col paddings h-screen">
         <Category />
-        <p className=" no-result-text">
+        <p className=" no-result-text text-2xl text-primary-purple">
           No Projects Found Go MAKE SOME FIRST.....!!!!!!!
         </p>
       </section>
@@ -51,20 +51,23 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
   }
   const pagination = data?.projectSearch?.pageInfo ;
   return (
-    <section className="flexStart flex-col mb-16 paddings">
+    <section className="flexStart flex-col  paddings min-h-screen bg-hero-pattern">
       <Category />
       <section className="projects-grid">
-        {actualData.map(({ node }: { node: ProjectInterface }) => (
-          <ProjectCard
-            key={node.id}
-            id={node?.id}
-            image={node?.image}
-            title={node?.title}
-            name={node?.createdBy.name}
-            avatarUrl={node?.createdBy.avatarUrl}
-            userId={node?.createdBy.id}
-          />
-        ))}
+        {actualData.map(
+          ({ node }: { node: ProjectInterface }, index: number) => (
+            <ProjectCard
+              key={node.id}
+              id={node?.id}
+              image={node?.image}
+              title={node?.title}
+              name={node?.createdBy.name}
+              avatarUrl={node?.createdBy.avatarUrl}
+              userId={node?.createdBy.id}
+              index={index}
+            />
+          )
+        )}
       </section>
       <More
         startCursor={pagination?.startCursor}

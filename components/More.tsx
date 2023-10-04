@@ -15,9 +15,9 @@ hasPreviousPage}:Props) => {
     const router = useRouter();
     const handleNav =(direction:string)=>{
    const currentParams = new URLSearchParams(window.location.search);
-        console.log('====================================');
-        console.log(currentParams, direction, hasPreviousPage, hasNextPage);
-        console.log('====================================');
+        // console.log('====================================');
+        // console.log(currentParams, direction, hasPreviousPage, hasNextPage);
+        // console.log('====================================');
    if (direction === "pre" && hasPreviousPage) {
      currentParams.delete("endcursor");
      currentParams.set("startcursor", startCursor || "");

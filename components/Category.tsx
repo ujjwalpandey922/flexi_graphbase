@@ -16,11 +16,17 @@ const Category = () => {
       <ul className="flex gap-1 justify-between overflow-auto">
         {categoryFilters.map((category) => (
           <button
-          key={category}
-            className={`px-3 py-4 rounded-lg capitalize whitespace-nowrap ${category===selectedCategory?"font-medium bg-light-white-300" :"font-normal"}`}
+            key={category}
+            className={`px-3 py-4  rounded-lg capitalize whitespace-nowrap font-semibold hover:bg-[#00000065]  ${
+              category === selectedCategory
+                ? "font-medium bg-light-white-300 text-black "
+                : "text-light-white-500"
+            }`}
             type="button"
             onClick={() => handleCategoryChange(category)}
-          >{category}</button>
+          >
+            {category}
+          </button>
         ))}
       </ul>
     </div>
