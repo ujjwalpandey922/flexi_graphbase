@@ -57,11 +57,11 @@ const ProfileMenu = ({ session }: { session: SessionInterface }) => {
               <p className="font-semibold">{session?.user?.name}</p>
             </div>
 
-            <div className="flex flex-col gap-3 pt-10 items-start w-full">
+            <div className="flex flex-col  pt-10 items-start w-full">
               <Menu.Item>
                 <Link
                   href={`/profile/${session?.user?.id}`}
-                  className="text-sm"
+                  className="text-sm hover:bg-[#00000065] py-2 px-3 rounded-lg"
                 >
                   Work Preferences
                 </Link>
@@ -69,7 +69,7 @@ const ProfileMenu = ({ session }: { session: SessionInterface }) => {
               <Menu.Item>
                 <Link
                   href={`/profile/${session?.user?.id}`}
-                  className="text-sm"
+                  className="text-sm hover:bg-[#00000065] py-2 px-3 rounded-lg"
                 >
                   Settings
                 </Link>
@@ -77,7 +77,7 @@ const ProfileMenu = ({ session }: { session: SessionInterface }) => {
               <Menu.Item>
                 <Link
                   href={`/profile/${session?.user?.id}`}
-                  className="text-sm"
+                  className="text-sm hover:bg-[#00000065] py-2 px-3 rounded-lg"
                 >
                   Profile
                 </Link>
@@ -87,7 +87,7 @@ const ProfileMenu = ({ session }: { session: SessionInterface }) => {
               <Menu.Item>
                 <button
                   type="button"
-                  className="text-sm"
+                  className="text-sm hover:bg-[#00000065] py-2 px-3 rounded-lg"
                   onClick={() => signOut()}
                 >
                   Sign out

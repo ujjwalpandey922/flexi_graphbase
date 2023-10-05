@@ -16,9 +16,13 @@ const Navbar = async () => {
         <Link href={"/"}>
           <Image src={logo} alt={"logo"} height={35} width={115} />
         </Link>
-        <ul className="xl:flex hidden gap-8 text-xl ">
+        <ul className="xl:flex hidden gap-2 text-xl ">
           {NavLinks.map((link) => (
-            <Link key={link.key} href={link.href}>
+            <Link
+              key={link.key}
+              href={link.href}
+              className="hover:bg-[#00000065] py-2 px-3 rounded-lg"
+            >
               {link.text}
             </Link>
           ))}
@@ -28,7 +32,12 @@ const Navbar = async () => {
         {session?.user ? (
           <>
             <ProfileMenu session={session} />
-            <Link href={"/createProject"}>Create Project</Link>
+            <Link
+              href={"/createProject"}
+              className="hover:bg-[#00000065] py-2 px-3 rounded-lg"
+            >
+              Create Project
+            </Link>
           </>
         ) : (
           <AuthProviders />

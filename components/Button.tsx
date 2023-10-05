@@ -24,7 +24,11 @@ const Button = ({
     <button
       className={`flexCenter gap-3 px-4 py-3 rounded-lg   
        ${textColor || "text-white"} 
-        ${isSubmitting ? "bg-black/50" : bgColor || "bg-primary-purple"}`}
+        ${
+          isSubmitting
+            ? "bg-black/50"
+            : bgColor || "bg-primary-purple hover:bg-[#9747ffcb]"
+        }`}
       type={type || "button"}
       disabled={isSubmitting}
       onClick={handleClick}
